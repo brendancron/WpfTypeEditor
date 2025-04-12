@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Editor.Views.ListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:editor="clr-namespace:Editor">
+   <UserControl.Resources>
+      <editor:ConventionViewTemplateSelector x:Key="ViewTemplateSelector" />
+   </UserControl.Resources>
+   <StackPanel Margin="5">
+      <!-- Optional label for field name -->
+      <TextBlock Text="{Binding MemberName}" FontWeight="Bold" Margin="0,0,0,5"/>
+
+      <!-- Editable list of view models -->
+      <ItemsControl ItemsSource="{Binding Items}">
+         <ItemsControl.ItemTemplate>
+            <DataTemplate>
+               <ContentControl Content="{Binding}"
+                  ContentTemplateSelector="{StaticResource ViewTemplateSelector}"/>
+            </DataTemplate>
+         </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <!-- Optional: Add button -->
+      <Button Content="Add Item" Click="OnAddItemClicked" Margin="0,5,0,0" />
+   </StackPanel>
+</UserControl>
